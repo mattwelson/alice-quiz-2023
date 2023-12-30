@@ -1,5 +1,5 @@
-import { q } from "groqd";
-import { runQuery } from "./sanity.server";
+import { q } from "groqd"
+import { runQuery } from "./sanity.server"
 
 export async function getAllQuestions() {
   return runQuery(
@@ -29,7 +29,7 @@ export async function getAllQuestions() {
               }),
           }),
       })
-  );
+  )
 }
 
 // check slug is a valid index, if not 404
@@ -48,7 +48,7 @@ export async function getQuestion(questionId: string) {
         }),
       }),
     { questionId }
-  );
+  )
 }
 
 export async function getHikerType(hikerTypeSlug: string) {
@@ -60,7 +60,8 @@ export async function getHikerType(hikerTypeSlug: string) {
       .grab$({
         _id: q.string(),
         title: q.string(),
+        link: q.string(),
       }),
     { hikerTypeSlug }
-  );
+  )
 }
