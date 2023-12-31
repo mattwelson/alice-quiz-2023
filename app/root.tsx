@@ -1,5 +1,5 @@
 import { cssBundleHref } from "@remix-run/css-bundle"
-import type { LinksFunction } from "@remix-run/node"
+import type { LinkDescriptor, LinksFunction } from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -12,8 +12,26 @@ import { FaInstagram } from "react-icons/fa/index.js"
 
 import "./tailwind.css"
 
+export const googleFontLinks = [
+  {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display&display=swap",
+  },
+] satisfies LinkDescriptor[]
+
 export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  ...(cssBundleHref
+    ? [...googleFontLinks, { rel: "stylesheet", href: cssBundleHref }]
+    : [...googleFontLinks]),
 ]
 
 export default function App() {
@@ -25,8 +43,8 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <header className='bg-info text-info-content mb-4 p-4 grid grid-cols-wrapper [&>*]:col-start-2'>
+      <body className='font-serif'>
+        <header className='bg-primary text-primary-content mb-4 p-4 grid grid-cols-wrapper [&>*]:col-start-2'>
           <div className='flex justify-between'>
             <a
               className='font-serif text-xl'
