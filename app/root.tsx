@@ -1,5 +1,9 @@
 import { cssBundleHref } from "@remix-run/css-bundle"
-import type { LinkDescriptor, LinksFunction } from "@remix-run/node"
+import type {
+  LinkDescriptor,
+  LinksFunction,
+  MetaFunction,
+} from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -28,11 +32,35 @@ export const googleFontLinks = [
   },
 ] satisfies LinkDescriptor[]
 
+export const iconLinks = [
+  {
+    rel: "icon",
+    href: "/icon-32x32.webp",
+    sizes: "32x32",
+  },
+  {
+    rel: "icon",
+    href: "/icon-192x192.webp",
+    sizes: "192x192",
+  },
+] satisfies LinkDescriptor[]
+
 export const links: LinksFunction = () => [
   ...(cssBundleHref
-    ? [...googleFontLinks, { rel: "stylesheet", href: cssBundleHref }]
-    : [...googleFontLinks]),
+    ? [
+        ...googleFontLinks,
+        ...iconLinks,
+        { rel: "stylesheet", href: cssBundleHref },
+      ]
+    : [...googleFontLinks, ...iconLinks]),
 ]
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Tramper Type - Alice Adventuring" },
+    { name: "description", content: "What type of tramper are you?" },
+  ]
+}
 
 export default function App() {
   return (
