@@ -12,7 +12,7 @@ export default function Index() {
     ]
     const shareData = {
       title: "test",
-      url: "https://aliceadventuring.com",
+      //url: "https://aliceadventuring.com",
       files: filesArray,
     } satisfies ShareData
 
