@@ -1,6 +1,6 @@
 export default function Index() {
   async function clickHandler() {
-    const url = "https://gssc.esa.int/navipedia/images/a/a9/Example.jpg"
+    const url = "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg"
     // fetch the image from the above url
     const image = await fetch(url)
     const imageBlob = await image.blob()
