@@ -1,20 +1,20 @@
 export default function Index() {
   async function clickHandler() {
-    const url =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/PNG_Test.png/477px-PNG_Test.png"
+    const url = "https://gssc.esa.int/navipedia/images/a/a9/Example.jpg"
     // fetch the image from the above url
     const image = await fetch(url)
     const imageBlob = await image.blob()
     const filesArray = [
-      new File([imageBlob], "test.png", {
-        type: "image/png",
+      new File([imageBlob], "test.jpg", {
+        type: "image/jpeg",
         lastModified: new Date().getTime(),
       }),
     ]
     const shareData = {
       title: "test",
+      url: "https://aliceadventuring.com",
       files: filesArray,
-    }
+    } satisfies ShareData
 
     if (navigator.canShare && navigator.canShare(shareData)) {
       await navigator.share(shareData)
