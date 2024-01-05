@@ -23,7 +23,9 @@ export default function Index() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
       <h1>Share test</h1>
-      <button onClick={clickHandler}>Share button</button>
+      <button className='btn btn-primary' onClick={clickHandler}>
+        Share button
+      </button>
     </div>
   )
 }
