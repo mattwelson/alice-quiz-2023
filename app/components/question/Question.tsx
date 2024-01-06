@@ -5,12 +5,15 @@ import { Form } from "@remix-run/react"
 export function Question({
   question,
   isSubmitting,
+  isLoading,
   error,
 }: {
   question: Awaited<ReturnType<typeof getQuestion>>
   isSubmitting: boolean
+  isLoading: boolean
   error?: string
 }) {
+  const isInFlight = isSubmitting || isLoading
   return (
     <Form method='POST'>
       <input type='hidden' name='question' value={question._id} />
@@ -26,8 +29,9 @@ export function Question({
             <button
               className='shadow btn uppercase font-sans tracking-wider'
               type='submit'
+              disabled={isInFlight}
             >
-              {!isSubmitting ? "Next" : "Loading..."}
+              {!isInFlight ? "Next" : "Loading..."}
             </button>
           </div>
         </div>

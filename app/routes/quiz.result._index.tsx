@@ -31,3 +31,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     headers: { "Set-Cookie": await commitSession(session) },
   })
 }
+
+export default function ResultPageLoading() {
+  return <div className='mt-8 md:mt-16 text-xl font-bold'>Loading...</div>
+}
