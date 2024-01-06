@@ -63,6 +63,7 @@ export default function Quiz() {
         isSubmitting={state === "submitting"}
         isLoading={state === "loading"}
         error={actionData?.error}
+        isLastQuestion={current === total}
       />
       <div className='text-center my-2 opacity-80'>
         {current}/{total}
