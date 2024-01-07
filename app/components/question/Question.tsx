@@ -4,25 +4,13 @@ import { Form } from "@remix-run/react"
 
 export function Question({
   question,
-  isSubmitting,
-  isLoading,
+  isInFlight,
   error,
-  isLastQuestion,
 }: {
   question: Awaited<ReturnType<typeof getQuestion>>
-  isSubmitting: boolean
-  isLoading: boolean
+  isInFlight: boolean
   error?: string
-  isLastQuestion: boolean
 }) {
-  const isInFlight = isSubmitting || isLoading
-  if (isInFlight && isLastQuestion)
-    return (
-      <div className='text-center text-xl text-primary'>
-        <span className='loading loading-spinner loading-lg'></span>
-        <div>Loading</div>
-      </div>
-    )
   return (
     <Form method='POST'>
       <input type='hidden' name='question' value={question._id} />

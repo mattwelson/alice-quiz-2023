@@ -56,14 +56,23 @@ export default function Quiz() {
   const actionData = useActionData<typeof action>()
   const { state } = useNavigation()
 
+  const isInFlight = state === "submitting" || state === "loading"
+  if (isInFlight && current === total)
+    return (
+      <div className='mt-32'>
+        <div className='text-center text-xl text-primary'>
+          <span className='loading loading-spinner loading-lg'></span>
+          <div>Loading</div>
+        </div>
+      </div>
+    )
+
   return (
     <div className='mt-8 md:mt-16'>
       <Question
         question={question}
-        isSubmitting={state === "submitting"}
-        isLoading={state === "loading"}
+        isInFlight={isInFlight}
         error={actionData?.error}
-        isLastQuestion={current === total}
       />
       <div className='text-center my-2 opacity-80'>
         {current}/{total}
